@@ -11,6 +11,7 @@ export default function InterviewerList(props) {
         name={interviewer.name}
         avatar={interviewer.avatar}
         selected={interviewer.id === props.interviewer}
+          //Refactoring? ^ and below speak with mentor regarding how its excuted.
         setInterviewer={() => props.setInterviewer(interviewer.id)}
       />
     );
