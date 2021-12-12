@@ -1,10 +1,11 @@
 import React from 'react';
+import 'components/InterviewerList.scss';
 import 'components/InterviewerList';
 import InterviewerListItem from 'components/InterviewerListItem';
 
 export default function InterviewerList(props) {
 
-  const interviewers = props.interviewers.map((interviewer) => {
+  const interviewers = props.interviewers.map((interviewer => {
     return (
       <InterviewerListItem
         key={interviewer.id}
@@ -15,7 +16,7 @@ export default function InterviewerList(props) {
         setInterviewer={() => props.setInterviewer(interviewer.id)}
       />
     );
-  });
+  }));
 
   return (
     <section className="interviewers">
