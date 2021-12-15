@@ -1,5 +1,5 @@
 
-export default function getAppointmentsForDay(state, day) {
+export function getAppointmentsForDay(state, day) {
   let appointmentsArray = [];
   const [getAppointmentsForDay] = state.days.filter((data) => data.name === day);
   // maybe refactor and use map? insted of filter?
