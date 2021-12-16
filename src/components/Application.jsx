@@ -5,7 +5,7 @@ import "components/Application.scss";
 
 import DayList from "./DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview} from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay} from "helpers/selectors";
 
 // import useVisualMode from "./useVisualMode";
 
@@ -71,7 +71,8 @@ export default function Application(props) {
     const [state, setState] = useState({
       day: "Monday",
       days: [],
-      appointments: {}
+      appointments: {},
+      interviewers: {}
     });
   
     const setDay = day => setState({ ...state, day });
@@ -102,9 +103,30 @@ export default function Application(props) {
           id={appointment.id}
           time={appointment.time}
           interview={interview}
+          bookInterview={bookInterview}
+          interviewers={getInterviewersForDay(state, state.day)}
         />
       );
     });
+
+
+    async function bookInterview(id, interview) {
+      console.log("+++++++++++:",id, interview);
+      const appointment = {
+        ...state.appointments[id],
+        interview: { ...interview }
+      };
+  
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment
+      }
+
+      return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview }).then(
+        (res) => {setState({...state, appointments});
+      }
+      );
+    }
 
 
   return (
@@ -120,7 +142,8 @@ export default function Application(props) {
         <DayList 
           days={state.days} 
           value={state.day} 
-          onChange={setDay} 
+          onChange={setDay}
+          bookInterview={bookInterview} 
         />
         </nav>
         <img
