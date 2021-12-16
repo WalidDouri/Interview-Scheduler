@@ -16,6 +16,23 @@ export function getAppointmentsForDay(state, day) {
   }
 }
 
+export function getInterviewersForDay(state, day) {
+  let interviewersArray = [];
+  const [getInterviewersForDay] = state.days.filter((data) => data.name === day);
+  // maybe refactor and use map? insted of filter?
+  if (!getInterviewersForDay) {
+    return [];
+  } else {
+    const interviewers = getInterviewersForDay.interviewers.filter(
+      (id) => id === state.appointments[id].id
+    );
+    interviewers.forEach((interviewer) =>
+      interviewersArray.push(state.interviewers[interviewer])
+    );
+    return interviewersArray;
+  }
+}
+
 export function getInterview(state, interview) {
   if (!interview) {
     return null;

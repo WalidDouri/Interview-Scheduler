@@ -7,6 +7,8 @@ import DayList from "./DayList";
 import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterview} from "helpers/selectors";
 
+// import useVisualMode from "./useVisualMode";
+
 // const days = [
 //   {
 //     id: 1,
