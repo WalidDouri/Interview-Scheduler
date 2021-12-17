@@ -7,21 +7,19 @@ import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
 import Form from 'components/Appointment/Form';
 import Status from 'components/Appointment/Status';
-// import Confirm from 'components/Appointment/Confirm';
+import Confirm from 'components/Appointment/Confirm';
 // import Error from 'components/Appointment/Error';
 
 
 import useVisualMode from "hooks/useVisualMode";
-import { PROPERTY_TYPES } from "@babel/types";
-// import { remove } from "store2";
 
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
-// const DELETING = "DELETING";
-// const CONFIRM = "CONFIRM";
+const DELETING = "DELETING";
+const CONFIRM = "CONFIRM";
 // const EDIT = "EDIT";
 
 
@@ -38,9 +36,19 @@ export default function Appointment(props) {
       .then(() => {
         transition(SHOW);
 
-
       });
   }
+
+
+  function remove() {
+    transition(CONFIRM);
+    transition(DELETING);
+    props.cancelInterview(props.id)
+      .then(() => {
+        transition(EMPTY);
+      })
+
+  };
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -64,10 +72,21 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
+          onDelete={remove}
         />
       )}
 
       {mode === SAVING && <Status message='Saving' />}
+
+      {mode === DELETING && <Status message='Deleting' />}
+
+      {mode === CONFIRM && (
+        <Confirm
+          message='Are you sure you would like to delete?'
+          onConfirm={remove}
+          onCancel={() => back()}
+        />
+      )}
 
     </article>
   )
