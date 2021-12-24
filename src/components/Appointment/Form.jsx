@@ -41,11 +41,13 @@ export default function FormComponent(props) {
 
         <form autoComplete="off" onSubmit={(event => event.preventDefault())} >
           <input
-            className="appointment__create-input text--semi-bold"
-            type="text"
-            placeholder="Enter Student Name"
+             className="appointment__create-input text--semi-bold"
+             name="name"
+             type="text"
+             placeholder="Enter Student Name"
             value={student}
             onChange={(event) => setStudent(event.target.value)}
+            data-testid="student-name-input"
             />
         </form>
         <section className="appointment__validation">{error}</section>
