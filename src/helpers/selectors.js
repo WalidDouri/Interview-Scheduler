@@ -1,8 +1,8 @@
-
 export function getAppointmentsForDay(state, day) {
   let appointmentsArray = [];
+
   const [getAppointmentsForDay] = state.days.filter((data) => data.name === day);
-  // maybe refactor and use map? insted of filter?
+
   if (!getAppointmentsForDay) {
     return [];
   } else {
@@ -18,8 +18,9 @@ export function getAppointmentsForDay(state, day) {
 
 export function getInterviewersForDay(state, day) {
   let interviewersArray = [];
+
   const [getInterviewersForDay] = state.days.filter((data) => data.name === day);
-  // maybe refactor and use map? insted of filter?
+
   if (!getInterviewersForDay) {
     return [];
   } else {
@@ -42,17 +43,6 @@ export function getInterview(state, interview) {
       student: interview.student,
       interviewer: interviewersIDs
     };
-    // console.log(interviewObjects);
-    // {  
-    //   "student": "Lydia Miller-Jones",
-    //   "interviewer": {  
-    //     "id": 1,
-    //     "name": "Sylvia Palmer",
-    //     "avatar": "https://i.imgur.com/LpaY82x.png"
-    //   }
-    // }
+
   };
 };
-
-
-// The function should return a new object containing the interview data when we pass it an object that contains the interviewer. Otherwise, the function should return null. The object it returns should look like this

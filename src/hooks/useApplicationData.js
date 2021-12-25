@@ -14,7 +14,6 @@ export default function useApplicationData() {
 
   const setDay = day => setState({ ...state, day });
 
-
   const updateSpots = (state, appointments) => {
     const appointmentsArray = getAppointmentsForDay(
       { ...state, appointments }, state.day
@@ -33,8 +32,6 @@ export default function useApplicationData() {
     });
   };
 
-
-  //implement try catch functions in future refactors
   useEffect(() => {
     Promise.all([
       axios.get('http://localhost:8001/api/days'),
@@ -46,26 +43,6 @@ export default function useApplicationData() {
       setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     })
   }, [])
-
-  //Add the line below:
-  // const appointments = getAppointmentsForDay(state, state.day)
-
-  // const schedule = appointments.map((appointment) => {
-  //   const interview = getInterview(state, appointment.interview);
-
-  //   return (
-  //     <Appointment
-  //       key={appointment.id}
-  //       id={appointment.id}
-  //       time={appointment.time}
-  //       interview={interview}
-  //       bookInterview={bookInterview}
-  //       interviewers={getInterviewersForDay(state, state.day)}
-  //       cancelInterview={cancelInterview}
-  //     />
-  //   );
-  // });
-
 
   async function bookInterview(id, interview) {
     console.log("+++++++++++:", id, interview);

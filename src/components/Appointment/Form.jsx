@@ -35,7 +35,6 @@ export default function Form(props) {
     props.onSave(student, interviewer);
   }
 
-
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -66,19 +65,4 @@ export default function Form(props) {
       </section>
     </main>
   )
-}
-
-
-
-// As part of our Edit story, the Form component should take the following props:
-
-// student:String
-// interviewer:Number
-// interviewers:Array
-// onSave:Function
-// onCancel:Function
-// As part of our Create story, the Form component should take the following props:
-
-// interviewers:Array
-// onSave:Function
-// onCancel:Function
+};
