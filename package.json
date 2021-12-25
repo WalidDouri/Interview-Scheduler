@@ -6,6 +6,7 @@
     "axios": "^0.24.0",
     "babel-loader": "^8.0.5",
     "classnames": "^2.2.6",
+    "cypress": "^9.2.0",
     "normalize.css": "^8.0.1",
     "react": "^16.14.0",
     "react-dom": "^16.9.0",
