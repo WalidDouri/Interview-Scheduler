@@ -45,7 +45,7 @@ export default function useApplicationData() {
   }, [])
 
   async function bookInterview(id, interview) {
-    console.log("+++++++++++:", id, interview);
+    // console.log("+++++++++++:", id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -58,10 +58,8 @@ export default function useApplicationData() {
 
     return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview }).then(
       (res) => {
-        const days = updateSpots(state, appointments);
-        setState({ ...state, appointments, days });
+        setState({ ...state, appointments });
       })
-      .catch(error => console.log(error));
   }
 
   async function cancelInterview(id) {
@@ -80,8 +78,6 @@ export default function useApplicationData() {
         const days = updateSpots(state, appointments);
         setState({ ...state, appointments, days });
       })
-      .catch(error => console.log(error));
-
   }
   return { state, setDay, bookInterview, cancelInterview };
 }

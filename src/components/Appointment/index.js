@@ -23,6 +23,9 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
+  const { mode, transition, back } = useVisualMode(
+    props.interview ? SHOW : EMPTY
+  );
   //REFACTOR
   function save(name, interviewer) {
     const interview = {
@@ -46,10 +49,6 @@ export default function Appointment(props) {
       .catch(error => transition(ERROR_DELETE, true));
   }
 
-  const { mode, transition, back } = useVisualMode(
-    props.interview ? SHOW : EMPTY
-  );
-
   return (
     <article className="appointment">
       <Header time={props.time}></Header>
@@ -68,7 +67,7 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
-          onDelete={remove}
+          onDelete={() => transition(CONFIRM)}
           onEdit={() => transition(EDIT)}
         />
       )}
@@ -88,6 +87,7 @@ export default function Appointment(props) {
       {mode === EDIT && (
         <Form
           student={props.interview.student}
+          interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
           onCancel={() => back()}
           onSave={save}
@@ -97,13 +97,13 @@ export default function Appointment(props) {
       {mode === ERROR_SAVE &&
         <Error
           message="Could not create appointment"
-          onCancel={() => back()}
+          onClose={() => back()}
         />
       }
       {mode === ERROR_DELETE &&
         <Error
           message="Could not cancel appointment"
-          onCancel={() => back()}
+          onClose={() => back()}
         />
       }
     </article>
