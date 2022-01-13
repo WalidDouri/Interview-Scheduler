@@ -29,11 +29,10 @@ UI Component Design
 
 ## Screenshots
 
-!["Main View"]()
-!["Edit Existing Appointment"]()
-!["Saving Status"]()
-!["Delete Confirmation View"]()
-!["Deleting Status"]()
+!["Main View"](https://github.com/WalidDouri/Interview-Scheduler/blob/master/docs/IS_Main_View.PNG?raw=true)
+!["Edit Existing Appointment"](https://github.com/WalidDouri/Interview-Scheduler/blob/master/docs/IS_Edit_Exiting_Appointment_View.PNG?raw=true)
+!["Saving Status"](https://github.com/WalidDouri/Interview-Scheduler/blob/master/docs/IS_Saving_View.PNG?raw=true)
+!["Delete Confirmation View"](https://github.com/WalidDouri/Interview-Scheduler/blob/master/docs/IS_Delete_Confirmation_view.PNG?raw=true)
 
 ## Setup
 
