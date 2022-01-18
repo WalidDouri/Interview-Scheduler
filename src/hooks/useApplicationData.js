@@ -39,17 +39,16 @@ export default function useApplicationData() {
       axios.get('http://localhost:8001/api/interviewers')
 
     ]).then((all) => {
-      console.log("-----------:", all[0])
       setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     })
   }, [])
 
   async function bookInterview(id, interview) {
-    // console.log("+++++++++++:", id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
     };
+    console.log("HELLOOOOOO;", state.appointments)
 
     const appointments = {
       ...state.appointments,
@@ -58,7 +57,8 @@ export default function useApplicationData() {
 
     return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview }).then(
       (res) => {
-        setState({ ...state, appointments });
+        const days = updateSpots(state, appointments);
+        setState({ ...state, appointments, days });
       })
   }
 

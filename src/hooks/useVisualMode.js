@@ -4,18 +4,14 @@ export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
-  //When replace is true then set the history to reflect that we are replacing the current mode.
+  // When replace is true then set the history to reflect that we are replacing the current mode.
   const transition = (newMode, replace = false) => {
-    let newHistory = [...history];
     if (!replace) {
-      newHistory.push(newMode);
-      setHistory(newHistory);
-      setMode(newMode);
+      setHistory((prev) => [...prev, newMode]);
     } else {
-      newHistory.splice(-1, 1, newMode);
-      setHistory(newHistory);
-      setMode(newMode);
+      setHistory((prev) => [...prev.slice(0, prev.length - 1), newMode]);
     };
+    setMode(newMode)
   }
 
   const back = () => {
@@ -23,7 +19,7 @@ export default function useVisualMode(initial) {
     if (!history.length <= 1) {
       newHistory.pop();
       setMode(newHistory[newHistory.length - 1]);
-      setHistory(newHistory);
+      setHistory(([...newHistory]));
     }
     return;
   };
