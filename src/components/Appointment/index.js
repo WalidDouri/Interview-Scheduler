@@ -43,15 +43,12 @@ export default function Appointment(props) {
 
   function remove(event) {
     transition(DELETING, true);
-    console.log('hellloooooooooooooooooooo')
     props
       .cancelInterview(props.id)
       .then(() => {
-        console.log('THEN RETURNNNN');
         return transition(EMPTY)
       })
       .catch(error => {
-        console.log('CATCH RETURNMNNN');
         return transition(ERROR_DELETE, true)
       })
   }
